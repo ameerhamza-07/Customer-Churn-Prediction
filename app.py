@@ -2,14 +2,10 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 
-# ==========================
 # Load Model
-# ==========================
 model = load("customer_churn_pipeline.pkl")
 
-# ==========================
 # Page Configuration
-# ==========================
 st.set_page_config(
     page_title="Customer Churn Prediction",
     page_icon="📊",
@@ -19,9 +15,7 @@ st.set_page_config(
 st.title("📊 Customer Churn Prediction")
 st.write("Predict whether a telecom customer is likely to churn.")
 
-# ==========================
 # Customer Information
-# ==========================
 
 col1, col2 = st.columns(2)
 
@@ -165,9 +159,7 @@ with col2:
         ]
     )
 
-# ==========================
 # Prediction
-# ==========================
 
 if st.button("Predict Churn"):
 
