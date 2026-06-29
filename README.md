@@ -33,138 +33,121 @@ This project is an end-to-end Customer Churn Prediction System that helps teleco
 * Matplotlib
 * Seaborn
 
-## 📂 Project Structure
+## 🏗️ Project Architecture
 
-Customer-Churn-Prediction/
-│
-├── app.py
-├── Customer_Churn_Prediction.ipynb
-├── customer_churn_pipeline.pkl
-├── Telco_customer_churn.xlsx
-├── requirements.txt
-├── README.md
-|
-├── dashboard/
-│   └── Customer_Churn_Dashboard.pbix
-│
-├── sql/
-│   └── analysis_queries.sql
-│
-├── screenshots/
-│   ├── dashboard.png
-│   ├── streamlit_home.png
-│   ├── prediction.png
-│   └── database.png
-│
-└── images/
-    └── architecture.png
+The Customer Churn Prediction System follows an end-to-end data analytics and machine learning workflow.
 
-## 🗄️ Database
+             Customer Churn Prediction System
 
-The dataset is imported into PostgreSQL , where SQL queries are used to perform customer analysis and generate business insights.
+        ┌────────────────────────────────────────────┐
+        │        Telco_customer_churn.xlsx           │
+        │             (Dataset Source)               │
+        └────────────────────────────────────────────┘
+                            │
+                            ▼
+        ┌────────────────────────────────────────────┐
+        │         PostgreSQL Database                │
+        │     Data Storage & SQL Analysis            │
+        └────────────────────────────────────────────┘
+                            │
+                            ▼
+        ┌────────────────────────────────────────────┐
+        │          Jupyter Notebook                  │
+        │ • Data Cleaning                            │
+        │ • Exploratory Data Analysis                │
+        │ • Feature Engineering                      │
+        │ • SQL Integration                          │
+        └────────────────────────────────────────────┘
+                            │
+                            ▼
+        ┌────────────────────────────────────────────┐
+        │       Machine Learning Models              │
+        │ • Logistic Regression                      │
+        │ • Decision Tree                            │
+        │ • Random Forest                            │
+        │ • XGBoost                                  │
+        └────────────────────────────────────────────┘
+                            │
+                            ▼
+        ┌────────────────────────────────────────────┐
+        │     Best Model Selected                    │
+        │   Logistic Regression Pipeline             │
+        │ customer_churn_pipeline.pkl                │
+        └────────────────────────────────────────────┘
+                            │
+              ┌─────────────┴─────────────┐
+              ▼                           ▼
+┌──────────────────────────────┐   ┌──────────────────────────┐
+│     Streamlit Web App        │   │     Power BI Dashboard   │
+│ • Customer Input             │   │ • KPI Cards              │
+│ • Churn Prediction           │   │ • Churn Analysis         │
+│ • Churn Probability          │   │ • Revenue Analysis       │
+│ • Risk Category              │   │ • CLTV Analysis          │
+└──────────────────────────────┘   └──────────────────────────┘
 
-Examples include:
+### Workflow Description
 
-* Total Customers
-* Churn Rate
-* Contract Analysis
-* Internet Service Analysis
-* Revenue Analysis
-* Customer Lifetime Value (CLTV)
+1. **Dataset Collection**
 
+   * The project begins with the **Telco Customer Churn** dataset stored in an Excel file.
 
-## 🤖 Machine Learning
+2. **Database Integration**
 
-The following machine learning models were trained and compared:
+   * The dataset is imported into **PostgreSQL** for efficient storage and SQL-based analysis.
 
-* Logistic Regression
-* Decision Tree
-* Random Forest
-* XGBoost
+3. **Data Processing**
 
-After evaluating the models using Accuracy, Precision, Recall, and F1-Score, **Logistic Regression** was selected as the final model.
+   * Data cleaning, preprocessing, missing value handling, feature engineering, and exploratory data analysis (EDA) are performed using **Python** and **Jupyter Notebook**.
 
-The complete preprocessing pipeline and trained model were saved as:
+4. **Machine Learning**
 
-customer_churn_pipeline.pkl
+   * Multiple machine learning algorithms are trained and evaluated:
 
+     * Logistic Regression
+     * Decision Tree
+     * Random Forest
+     * XGBoost
 
-## 🌐 Streamlit Web Application
+5. **Model Selection**
 
-The Streamlit application allows users to:
+   * Based on model evaluation metrics (Accuracy, Precision, Recall, and F1-Score), **Logistic Regression** is selected as the final model.
+   * The complete preprocessing pipeline and trained model are saved as `customer_churn_pipeline.pkl`.
 
-* Enter customer information
-* Predict customer churn
-* View churn probability
-* Display customer risk level
-* View entered customer details
+6. **Streamlit Deployment**
 
-Run the application using:
+   * The trained pipeline is deployed as an interactive Streamlit web application.
+   * Users can enter customer details to obtain:
 
-```bash
-streamlit run app.py
-```
+     * Churn prediction
+     * Churn probability
+     * Risk category (Low, Medium, High)
 
----
+7. **Business Intelligence Dashboard**
 
-## 📈 Power BI Dashboard
+   * Power BI connects to the PostgreSQL database to create interactive dashboards that visualize:
 
-The interactive dashboard includes:
-
-* Total Customers
-* Churn Rate
-* Total Revenue
-* Average CLTV
-* Contract-wise Churn
-* Internet Service Analysis
-* Payment Method Analysis
-* Revenue Segment Analysis
-* Customer Distribution by State
-
----
-
-## 📊 Model Workflow
-
-```
-Excel Dataset
-      │
-      ▼
-PostgreSQL Database
-      │
-      ▼
-Jupyter Notebook
-(Data Cleaning + SQL Analysis + EDA)
-      │
-      ▼
-Machine Learning
-(Logistic Regression, Decision Tree,
-Random Forest, XGBoost)
-      │
-      ▼
-Best Model Selection
-      │
-      ▼
-customer_churn_pipeline.pkl
-      │
-      ▼
-Streamlit Application
-      │
-      ▼
-Customer Churn Prediction
-```
+     * Customer distribution
+     * Churn rate
+     * Contract-wise churn
+     * Internet service analysis
+     * Payment method analysis
+     * Revenue segmentation
+     * Customer Lifetime Value (CLTV)
+     * Geographic customer distribution
 
 ---
 
+## 📈 Model Performance
+| Model | Accuracy | Precision | Recall | F1 Score | ROC AUC |
+| Logistic Regression| 79.99% |64.38% |55.08% | 59.37% |84.88%|
+| Random Forest      | 78.64% | 62.21% | 49.73% | 55.27% | 83.98% |
+| XGBoost            | 79.28% | 62.65% | 54.28% | 58.17% | 83.45% |
+| Decision Tree      | 71.82% | 47.06% | 49.20% | 48.10% | 64.60% |
 
-## 📌 Future Improvements
+Final Selected Model:Logistic Regression
 
-* Hyperparameter tuning
-* Cross-validation
-* Cloud deployment
-* Docker containerization
-* User authentication
-* Automated model retraining
-* Real-time prediction API
+## 🎯 Business Objective
 
----
+The primary objective of this project is to help telecom companies identify customers who are likely to churn. By predicting churn probability in advance, businesses can implement targeted retention strategies, reduce customer loss, improve customer satisfaction, and increase overall revenue.
+
 
